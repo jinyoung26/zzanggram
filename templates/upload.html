@@ -1,0 +1,39 @@
+<!--upload.html-->
+<!--업로드 페이지 HTML-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Upload</title>
+    <link rel="stylesheet" href="../static/upload.css">
+</head>
+<body>
+<div class="main-wrapper">
+    <div class="main-header">
+        <a href="main_page.html"><img class="logo_img" src="../static/img/logo.PNG"></a>
+    </div>
+    <p>
+    <div class="upload-wrapper">
+        <p><b>글쓰기</b></p>
+        <div class="form">
+            <input class="topic" type="text" placeholder="제목">
+            <textarea class="content" placeholder="내용"></textarea>
+        </div>
+        <div class="file-upload">
+            <input style="width:300px;" type="text" id="title" placeholder="업로드할 이미지 제목을 입력해주세요">
+            <input type="file" id="file">
+            <button onclick="posting()">업로드</button>
+        </div>
+        <hr>
+        <div>
+            <input style="width:300px;" onchange="find_img()" type="text" id="find_title"
+                   placeholder="볼 이미지의 제목을 입력해주세요">
+            <a id='link' href="#">업로드 한 이미지 보기</a>
+        </div>
+        <div class="upload-button">
+            <button>올리기</button>
+        </div>
+    </p>
+</body>
+</html>
