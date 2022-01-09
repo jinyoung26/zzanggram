@@ -4,26 +4,55 @@
     <meta charset="UTF-8">
     <title>Sign Up</title>
     <link rel="stylesheet" href="../static/sign_up.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 </head>
+<script>
+    function sign(){
+        let id = $(`#id`).val()
+        let pw = $(`#pw`).val()
+        let repw = $(`#repw`).val()
+        let name = $(`#name`).val()
+        let nick = $(`#nick`).val()
+
+        console.log(id, pw, repw, name, nick);
+            $.ajax({
+                url:"/sign_up",
+                type : 'POST',
+                data: {
+                    id_give : id,
+                    pw_give : pw,
+                    repw_give : repw,
+                    name_give : name,
+                    nick_give : nick
+                },
+                success: function (response){
+                    if (response['result']=='success'){
+                        alert('회원가입이 완료되었습니다.')
+                        window.location.href = '/'
+                    }
+                }
+            })
+    }
+</script>
 <body>
 <div class="main-wrapper">
     <div class="main-logo">
-        <a href="login.html"><img class="logo_img" src="../static/img/logo.PNG"></a>
+        <a href="/"><img class="logo_img" src="../static/img/logo.PNG"></a>
     </div>
     <div class="id-box">
         <p>아이디</p>
-        <input type="text" placeholder="ID">
+        <input type="text" placeholder="ID" id="id">
         <p>비밀번호</p>
-        <input type="text" placeholder="PASSWORD">
+        <input type="password" placeholder="PASSWORD" id="pw">
         <p>비밀번호 확인</p>
-        <input type="text" placeholder="PASSWORD">
+        <input type="password" placeholder="PASSWORD" id="repw">
         <p>이름</p>
-        <input type="text">
+        <input type="text" id="name">
         <p>닉네임</p>
-        <input type="text">
+        <input type="text" id="nick">
     </div>
     <div class="btn">
-        <button>가입하기</button>
+        <button onclick="sign()">가입하기</button>
     </div>
     <div class="footer">
         <p>@2022 zzanggram</p>

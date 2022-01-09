@@ -4,7 +4,34 @@
     <meta charset="UTF-8">
     <title>Login</title>
     <link rel="stylesheet" href="../static/login.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 </head>
+<script>
+    function login() {
+        let id = $(`#id`).val()
+        let pw = $(`#pw`).val();
+
+        $.ajax ({
+            url: '/',
+            type: 'POST',
+            data: {
+                id_give : id,
+                pw_give : pw
+            },
+            success: function (response){
+                if(response['result']== 'success'){
+                    alert('로그인 성공!')
+                    window.location.href = '/mainpage'
+                }
+                else{
+                    alert('로그인 실패')
+                    window.location.href = '/'
+                }
+            }
+
+        })
+    }
+</script>
 <body>
     <div class="main-wrapper">
         <div class="main-logo">
@@ -12,15 +39,15 @@
         </div>
         <div class="id-box">
             <p>아이디</p>
-            <input type="text" placeholder="ID">
+            <input type="text" placeholder="ID" id="id">
             <p>비밀번호</p>
-            <input type="text" placeholder="PASSWORD">
+            <input type="password" placeholder="PASSWORD" id="pw">
         </div>
         <div class="btn">
-            <button>로그인</button>
+            <button onclick="login()">로그인</button>
         </div>
         <div class="finder">
-            아이디 찾기 | 비밀번호 찾기 | <a class="sign" href="sign_up.html">회원가입</a>
+            아이디 찾기 | 비밀번호 찾기 | <a class="sign" href="/sign_up">회원가입</a>
         </div>
         <div class="footer">
         <p>@2022 zzanggram</p>
