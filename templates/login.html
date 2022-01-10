@@ -5,14 +5,18 @@
     <title>Login</title>
     <link rel="stylesheet" href="../static/login.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
 </head>
 <script>
+
     function login() {
         let id = $(`#id`).val()
         let pw = $(`#pw`).val();
 
+        console.log(id, pw)
+
         $.ajax ({
-            url: '/',
+            url: '/login',
             type: 'POST',
             data: {
                 id_give : id,
@@ -20,14 +24,16 @@
             },
             success: function (response){
                 if(response['result']== 'success'){
+                    $.cookie('token', response['token']);
                     alert('로그인 성공!')
-                    window.location.href = '/mainpage'
+                    window.location.href = '/'
                 }
                 else{
                     alert('로그인 실패')
-                    window.location.href = '/'
+                    window.location.href = '/login'
                 }
             }
+
 
         })
     }
