@@ -7,7 +7,17 @@
     <meta charset="UTF-8">
     <title>Main page</title>
     <link rel="stylesheet" href="../static/main_page.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 </head>
+<script>
+
+    function find_img() {
+    let title = $('#find_title').val()
+    document.getElementById('link').href = '/imgshow/'+title
+  }
+
+</script>
 <body>
 <div class="main-wrapper">
     <div class="main-header">
@@ -18,8 +28,13 @@
         <div class="board-wrapper">
             <div class="board-header">
                 <p>POST</p>
-                <button onclick="location.href='upload.html'">글쓰기</button>
+                <button onclick = "location.href='upload'">글쓰기</button>
             </div>
+
+            <input style="width:300px;" onchange="find_img()" type="text" id="find_title"
+                   placeholder="볼 이미지의 제목을 입력해주세요">
+            <a id='link' href="#">업로드 한 이미지 보기</a>
+
             <hr>
             <table class="table">
                 <thead>
@@ -32,6 +47,7 @@
 
                 </tbody>
             </table>
+        </div>
         </div>
     </div>
 </div>

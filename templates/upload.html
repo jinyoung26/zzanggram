@@ -7,11 +7,42 @@
     <meta charset="UTF-8">
     <title>Upload</title>
     <link rel="stylesheet" href="../static/upload.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 </head>
+<script>
+    function posting() {
+    let title = $('#title').val()
+    let file = $('#file')[0].files[0]
+    let form_data = new FormData()
+
+    form_data.append("title_give", title)
+    form_data.append("file_give", file)
+
+    $.ajax({
+        type: "POST",
+        url: "/upload",
+        data: form_data,
+        cache: false,
+        contentType: false,
+        processData: false,
+        success: function (response) {
+            alert(response["result"])
+            window.location.href= '/'
+        }
+    });
+  }
+
+  // function find_img() {
+  //   let title = $('#find_title').val()
+  //   document.getElementById('link').href = '/imgshow/'+title
+  // }
+
+</script>
 <body>
 <div class="main-wrapper">
     <div class="main-header">
-        <a href="main_page.html"><img class="logo_img" src="../static/img/logo.PNG"></a>
+        <a href="/"><img class="logo_img" src="../static/img/logo.PNG"></a>
     </div>
     <p>
     <div class="upload-wrapper">
@@ -25,14 +56,14 @@
             <input type="file" id="file">
             <button onclick="posting()">업로드</button>
         </div>
-        <hr>
+<!--        <hr>-->
         <div>
-            <input style="width:300px;" onchange="find_img()" type="text" id="find_title"
-                   placeholder="볼 이미지의 제목을 입력해주세요">
-            <a id='link' href="#">업로드 한 이미지 보기</a>
+<!--            <input style="width:300px;" onchange="find_img()" type="text" id="find_title"-->
+<!--                   placeholder="볼 이미지의 제목을 입력해주세요">-->
+<!--            <a id='link' href="#">업로드 한 이미지 보기</a>-->
         </div>
         <div class="upload-button">
-            <button>올리기</button>
+            <button onclick="posting()">올리기</button>
         </div>
     </p>
 </body>

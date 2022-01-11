@@ -10,26 +10,26 @@
 <script>
 
     function login() {
-        let id = $(`#id`).val()
+        let email = $(`#email`).val()
         let pw = $(`#pw`).val();
 
-        console.log(id, pw)
+        console.log(email, pw)
 
         $.ajax ({
             url: '/login',
             type: 'POST',
             data: {
-                id_give : id,
+                email_give : email,
                 pw_give : pw
             },
             success: function (response){
                 if(response['result']== 'success'){
                     $.cookie('token', response['token']);
-                    alert('로그인 성공!')
+                    alert('로그인이 완료되었습니다.')
                     window.location.href = '/'
                 }
                 else{
-                    alert('로그인 실패')
+                    alert('이메일 또는 비밀번호가 올바르지 않습니다.')
                     window.location.href = '/login'
                 }
             }
@@ -45,7 +45,7 @@
         </div>
         <div class="id-box">
             <p>아이디</p>
-            <input type="text" placeholder="ID" id="id">
+            <input type="text" placeholder="ID" id="email">
             <p>비밀번호</p>
             <input type="password" placeholder="PASSWORD" id="pw">
         </div>

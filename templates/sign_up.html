@@ -9,18 +9,18 @@
 </head>
 <script>
     function sign(){
-        let id = $(`#id`).val()
+        let email = $(`#email`).val()
         let pw = $(`#pw`).val()
         let repw = $(`#repw`).val()
         let name = $(`#name`).val()
         let nick = $(`#nick`).val()
 
-        console.log(id, pw, repw, name, nick);
+        console.log(email, pw, repw, name, nick);
             $.ajax({
                 url:"/sign_up",
                 type : 'POST',
                 data: {
-                    id_give : id,
+                    email_give : email,
                     pw_give : pw,
                     repw_give : repw,
                     name_give : name,
@@ -31,7 +31,10 @@
                         alert('회원가입이 완료되었습니다.')
                         window.location.href = '/login'
                     }
-                }
+                    else {
+                        alert(response['msg'])
+                        }
+                    }
             })
     }
 </script>
@@ -42,7 +45,7 @@
     </div>
     <div class="id-box">
         <p>아이디</p>
-        <input type="text" placeholder="ID" id="id">
+        <input type="text" placeholder="ID" id="email">
         <p>비밀번호</p>
         <input type="password" placeholder="PASSWORD" id="pw">
         <p>비밀번호 확인</p>
