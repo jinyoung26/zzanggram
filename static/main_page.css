@@ -21,6 +21,7 @@ body {
 .logo_img {
     width: 20%;
     padding: 10px;
+    cursor: pointer;
 }
 
 .main-header input {
